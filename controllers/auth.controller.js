@@ -95,7 +95,7 @@ exports.signin = async(req,res) => {
                 message: "User is not Approved for login"        
             })
         }
-        //We need t generate the access token(JWT token)
+        //We need to generate the access token(JWT token)
         const token = jwt.sign({
             id : userSaved.userId
         },authConfig.secret,{

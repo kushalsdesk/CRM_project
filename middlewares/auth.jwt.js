@@ -3,7 +3,7 @@
  */
 
 const jwt = require("jsonwebtoken");
-const config = require("../configs/auth.config")
+const authConfig = require("../configs/auth.config")
 const User = require("../models/user.model");   
 //Defining the middleware for the token validation
 const verifyToken = (req,res,next) => {
@@ -18,7 +18,7 @@ const verifyToken = (req,res,next) => {
     /**if the token is valid */
 
     
-        jwt.verify(token,config.secret,(err,decoded) => {
+        jwt.verify(token,authConfig.secret,(err,decoded) => {
             if(err){
                 return res.status(410).send({
                     message : "Invalid Token",
