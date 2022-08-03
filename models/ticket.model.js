@@ -20,7 +20,7 @@ const ticket_schema = new mongoose.Schema({
     status:{
         type : String,
         required : true,
-        deafult : "OPEN",
+        default : "OPEN",
         enum : ["OPEN","IN_PROGRESS","CLOSED"]
     },
     reporter : {

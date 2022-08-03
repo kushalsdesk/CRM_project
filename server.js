@@ -50,7 +50,7 @@ async function init(){
 /**Plugging the routes */
 require("./routes/auth.route")(app);
 require("./routes/user.route")(app);
-
+require("./routes/ticket.route")(app);
 
 /**starting point*/
 app.listen(server_config.PORT, () => {

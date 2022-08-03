@@ -27,7 +27,7 @@ const user_schema = new mongoose.Schema({
         type: String, 
         required: true, 
         default: "APPROVED",
-        enum : ["APPROVED", " PENDING" , "REJECTED"]
+        enum : ["APPROVED", "PENDING" , "REJECTED"]
     },
     createdAt : {
         type : Date,
@@ -41,6 +41,14 @@ const user_schema = new mongoose.Schema({
        default : () => {
           return Date.now();
        } 
+    },
+    ticketsCreated : {
+        type : [mongoose.SchemaTypes.ObjectId],
+        ref : "Ticket"
+    },
+    ticketAssigned : {
+        type : [mongoose.SchemaTypes.ObjectId],
+        ref : "Ticket"
     }
 });
 

@@ -65,7 +65,7 @@ exports.update = async (req,res) => {
      /**Update the user object based on the request */
       user.name = req.body.name != undefined ? req.body.name : user.name;
 
-      user.userStatus = req.body.status != undefined ? req.body.status : user.userStatus;
+      user.userStatus = req.body.userStatus != undefined ? req.body.userStatus : user.userStatus;
 
       user.userType = req.body.userType != undefined ? req.body.userType : user.userType;
 
