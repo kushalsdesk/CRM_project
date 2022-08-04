@@ -29,6 +29,7 @@ const ticket_schema = new mongoose.Schema({
     },
     assignee :{
         type : String,
+        required : true
     },
     createdAt : {
         type : Date,
