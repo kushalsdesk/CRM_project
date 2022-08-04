@@ -13,8 +13,12 @@ module.exports = (app) => {
 
 
     /**POST /crm/api/v1/tickets */
-
-
-
     app.post("/crm/api/v1/tickets",[auth.verifyToken,tickerValidator.validateTicketReqBody],tickerController.createTicket);
+
+
+    /**Fetching all the tickets */
+
+    app.get("/crm/api/v1/tickets",[auth.verifyToken],tickerController.getTickets);
+
+
 }

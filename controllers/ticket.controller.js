@@ -70,3 +70,43 @@ exports.createTicket = async (req,res) =>{
     }
     
 }
+
+
+/**Method to fetch all the tickets */
+
+
+exports.getTickets = async (req,res) => {
+
+    try{
+
+        /**Need to first see what type of user it is */
+        
+        const userId = req.userId;
+        const callingUser =  await User.findOne({userId: userId});
+        const queryObj = {};
+        /**Then we can have the query as per user */
+
+        if(callingUser.userType == "CUSTOMER"){
+            queryObj.reporter = req.userId;
+            //to check if the values are correct
+            console.log(req.userId);
+            console.log(queryObj);
+        }else if(callingUser.userType == "ENGINEER"){
+            queryObj.$or = [{reporter : req.userId},{assignee : req.userId}];
+            console.log(queryObj);
+        }
+
+        /**Finally return the result */
+
+        const tickets = await Ticket.find({queryObj});
+        return res.status(200).send(tickets);
+
+    }
+    catch(err){
+        console.log("There is an error while fetchin all the tickets", err.message);
+        res.status(500).send({
+            message : " Internal server Error"
+        });
+    }
+
+}
