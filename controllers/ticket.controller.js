@@ -10,6 +10,7 @@
 
 const User = require("../models/user.model");
 const Ticket = require("../models/ticket.model");
+const sentNotifications = require("../utils/notificationClient");
 
 exports.createTicket = async (req,res) =>{
     
@@ -57,6 +58,16 @@ exports.createTicket = async (req,res) =>{
                 engineer.ticketAssigned.push(ticketCreated._id);
                 await engineer.save()
             }
+
+            /**WE should call the notification service from here */
+            sentNotifications(
+                `Tickets Created with Id : ${ticketCreated._id}`,
+                "Yay Tickets Created",
+                `${customer.email},${engineer.email}`,
+                "CRM_APP"
+            )
+
+
             /** Finally the request is sent*/
     
     
